@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign in — ScholarFind</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="{{ url_for('home') }}" class="brand"><span class="brand-mark"></span>ScholarFind</a>
+    <ul class="nav-links">
+      <li><a href="{{ url_for('home') }}">Home</a></li>
+      <li><a href="{{ url_for('eligibility') }}">Check eligibility</a></li>
+      <li><a href="{{ url_for('results') }}">Your matches</a></li>
+      <li><a href="{{ url_for('login') }}" class="active">Sign in</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap" style="max-width:400px; padding:90px 24px 120px;">
+  <h1 style="font-family:var(--font-display); font-size:28px; font-weight:600; color:var(--ink); margin:0 0 8px; text-align:center;">
+    Sign in
+  </h1>
+  <p style="color:var(--text-muted); font-size:14px; margin:0 0 32px; text-align:center;">
+    Save your matches and track application deadlines.
+  </p>
+
+  <form class="card" action="{{ url_for('login') }}" method="post">
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="name@school.edu">
+    </div>
+    <div class="field">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="••••••••">
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+    <p class="hint" style="text-align:center; margin-top:16px;">
+      Don't have an account? <a href="#" style="color:var(--ink); font-weight:600; text-decoration:none;">Create one</a>
+    </p>
+  </form>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 ScholarFind</span>
+    <span>Built for students, by students</span>
+  </div>
+</footer>
+
+</body>
+</html>

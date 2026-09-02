@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — ScholarFind</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="dash-shell">
+
+  <aside class="sidebar">
+    <a href="{{ url_for('home') }}" class="brand"><span class="brand-mark"></span>ScholarFind</a>
+
+    <p class="sidebar-section-label">Menu</p>
+    <ul class="sidebar-nav">
+      <li><a href="{{ url_for('student_dashboard') }}" class="active">Overview</a></li>
+      <li><a href="{{ url_for('results') }}">My matches</a></li>
+      <li><a href="#">Saved scholarships</a></li>
+      <li><a href="#">My applications</a></li>
+      <li><a href="#">Notifications</a></li>
+      <li><a href="#">Profile</a></li>
+    </ul>
+
+    <p class="sidebar-section-label">Other</p>
+    <ul class="sidebar-nav">
+      <li><a href="{{ url_for('eligibility') }}">Edit eligibility details</a></li>
+    </ul>
+
+    <div class="sidebar-foot">
+      <a href="{{ url_for('login') }}">Sign out</a>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+
+    <div class="topbar">
+      <h1>Welcome back, Priya</h1>
+      <div class="topbar-right">
+        <div class="bell" aria-label="Notifications, 3 unread">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6Z"/><path d="M9.5 20a2.5 2.5 0 0 0 5 0"/></svg>
+          <span class="bell-dot"></span>
+        </div>
+        <div class="avatar">PS</div>
+      </div>
+    </div>
+
+    <div class="dash-content">
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="label">Matches found</div>
+          <div class="value">5</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Applications in progress</div>
+          <div class="value">2</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Deadlines this week</div>
+          <div class="value">1</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Saved scholarships</div>
+          <div class="value">3</div>
+        </div>
+      </div>
+
+      <div class="dash-row">
+
+        <div>
+          <h2 class="section-title">Your top matches</h2>
+
+          {% for s in matches[:3] %}
+          <div class="ticket">
+            <div class="ticket-main">
+              <span class="badge">Eligible</span>
+              <h3>{{ s.name }}</h3>
+              <p>{{ s.description }}</p>
+              <div class="ticket-meta">
+                <span>Deadline: {{ s.deadline }}</span>
+              </div>
+              {% if s.apply_url %}
+              <a href="{{ s.apply_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-top:14px; padding:9px 16px; font-size:13px;">
+                Apply now <span aria-hidden="true">↗</span>
+              </a>
+              {% endif %}
+            </div>
+            <div class="ticket-stub">
+              <div class="amount">{{ s.amount }}</div>
+              <div class="label">{{ s.amount_label }}</div>
+            </div>
+          </div>
+          {% else %}
+          <div class="card">
+            <p style="margin:0; color:var(--text-muted);">No matches yet — try updating your profile details.</p>
+          </div>
+          {% endfor %}
+
+          <a href="{{ url_for('results') }}" class="btn btn-secondary">View all matches</a>
+        </div>
+
+        <div>
+          <h2 class="section-title">Notifications</h2>
+          <div class="card" style="padding:8px 20px;">
+            <ul class="notif-list">
+              <li class="notif-item">
+                <span class="notif-dot new"></span>
+                <div>
+                  <p>A new scholarship matches your profile: <strong>State post-matric scholarship</strong>.</p>
+                  <span>2 hours ago</span>
+                </div>
+              </li>
+              <li class="notif-item">
+                <span class="notif-dot alert"></span>
+                <div>
+                  <p>AICTE Pragati Scholarship closes in 15 days — you haven't applied yet.</p>
+                  <span>1 day ago</span>
+                </div>
+              </li>
+              <li class="notif-item">
+                <span class="notif-dot success"></span>
+                <div>
+                  <p>Your application for the First-generation learner grant was received.</p>
+                  <span>3 days ago</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
+
+</body>
+</html>

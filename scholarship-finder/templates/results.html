@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your matches — ScholarFind</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="{{ url_for('home') }}" class="brand"><span class="brand-mark"></span>ScholarFind</a>
+    <ul class="nav-links">
+      <li><a href="{{ url_for('home') }}">Home</a></li>
+      <li><a href="{{ url_for('eligibility') }}">Check eligibility</a></li>
+      <li><a href="{{ url_for('results') }}" class="active">Your matches</a></li>
+      <li><a href="{{ url_for('login') }}">Sign in</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap" style="max-width:720px; padding:56px 24px 100px;">
+  <h1 style="font-family:var(--font-display); font-size:30px; font-weight:600; color:var(--ink); margin:0 0 6px;">
+    You qualify for {{ matches|length }} scholarship{{ 's' if matches|length != 1 else '' }}
+  </h1>
+  <p style="color:var(--text-muted); font-size:15px; margin:0 0 32px;">
+    Based on your course, category, income, and state. Sorted by closest deadline first.
+  </p>
+
+  {% for s in matches %}
+  <div class="ticket">
+    <div class="ticket-main">
+      <span class="badge">Eligible</span>
+      <h3>{{ s.name }}</h3>
+      <p>{{ s.description }}</p>
+      <div class="ticket-meta">
+        <span>Deadline: {{ s.deadline }}</span>
+        <span>Renewable: {{ s.renewable }}</span>
+      </div>
+      {% if s.apply_url %}
+      <a href="{{ s.apply_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-top:14px; padding:9px 16px; font-size:13px;">
+        Apply now <span aria-hidden="true">↗</span>
+      </a>
+      {% endif %}
+    </div>
+    <div class="ticket-stub">
+      <div class="amount">{{ s.amount }}</div>
+      <div class="label">{{ s.amount_label }}</div>
+    </div>
+  </div>
+  {% else %}
+  <div class="card">
+    <p style="margin:0; color:var(--text-muted);">No matches yet — try adjusting your details on the eligibility form.</p>
+  </div>
+  {% endfor %}
+
+  <a href="{{ url_for('eligibility') }}" class="btn btn-secondary" style="margin-top:12px;">Edit my answers</a>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 ScholarFind</span>
+    <span>Built for students, by students</span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScholarFind — Find scholarships you qualify for</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="{{ url_for('home') }}" class="brand"><span class="brand-mark"></span>ScholarFind</a>
+    <ul class="nav-links">
+      <li><a href="{{ url_for('home') }}" class="active">Home</a></li>
+      <li><a href="{{ url_for('eligibility') }}">Check eligibility</a></li>
+      <li><a href="{{ url_for('results') }}">Your matches</a></li>
+      <li><a href="{{ url_for('login') }}">Sign in</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero-section wrap">
+  <div class="hero-grid">
+    <div>
+      <span class="badge">Built for Indian college students</span>
+      <h1 style="font-family:var(--font-display); font-size:50px; line-height:1.08; font-weight:600; color:var(--ink); margin:20px 0 20px;">
+        Find scholarships you actually qualify for.
+      </h1>
+      <p style="font-size:17px; color:var(--text-muted); margin:0 0 28px; max-width:460px;">
+        Government, state, and private scholarships — matched to your course, category, income, and state. No spreadsheets, no guesswork.
+      </p>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="{{ url_for('eligibility') }}" class="btn btn-primary">Check your eligibility</a>
+        <a href="{{ url_for('results') }}" class="btn btn-secondary">See a sample match</a>
+      </div>
+
+      <div class="hero-stats">
+        <div>
+          <div class="num">36+</div>
+          <div class="lbl">Active scholarships</div>
+        </div>
+        <div>
+          <div class="num">1,248</div>
+          <div class="lbl">Students matched</div>
+        </div>
+        <div>
+          <div class="num">100%</div>
+          <div class="lbl">Free to use</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="ticket back">
+        <div class="ticket-main">
+          <span class="badge">Eligible</span>
+          <h3>First-generation learner grant</h3>
+          <p>For students first in their family to attend college.</p>
+        </div>
+        <div class="ticket-stub">
+          <div class="amount">₹15,000</div>
+          <div class="label">One-time</div>
+        </div>
+      </div>
+      <div class="ticket front">
+        <div class="ticket-main">
+          <span class="badge">Eligible</span>
+          <h3>AICTE Pragati Scholarship for girls</h3>
+          <p>Technical courses, family income under ₹8,00,000.</p>
+          <div class="ticket-meta">
+            <span>Deadline: 15 days</span>
+          </div>
+        </div>
+        <div class="ticket-stub">
+          <div class="amount">₹50,000</div>
+          <div class="label">Per year</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section wrap">
+  <div class="section-head">
+    <p class="kicker">What's out there</p>
+    <h2>Scholarships come in more types than most students realize</h2>
+  </div>
+
+  <div class="cat-grid">
+    <div class="cat-card">
+      <span class="cat-tag" style="background:var(--gold-light); color:var(--amber);">Merit-based</span>
+      <h3>Academic merit</h3>
+      <p>Awarded purely on marks or CGPA, regardless of income.</p>
+    </div>
+    <div class="cat-card">
+      <span class="cat-tag" style="background:var(--green-bg); color:var(--green);">Need-based</span>
+      <h3>Income-linked</h3>
+      <p>Government schemes with a family income ceiling, like the NSP Central Sector Scheme.</p>
+    </div>
+    <div class="cat-card">
+      <span class="cat-tag" style="background:var(--gold-light); color:var(--ink);">Reservation</span>
+      <h3>Category-based</h3>
+      <p>SC / ST / OBC / EWS and minority-community scholarships.</p>
+    </div>
+    <div class="cat-card">
+      <span class="cat-tag" style="background:var(--rose-bg); color:var(--rose);">For girls</span>
+      <h3>Girl-student schemes</h3>
+      <p>AICTE Pragati, Kotak Kanya, and similar awards for girl students.</p>
+    </div>
+    <div class="cat-card">
+      <span class="cat-tag" style="background:var(--blue-bg); color:var(--blue);">Technical</span>
+      <h3>Field-specific</h3>
+      <p>AICTE and INSPIRE-style schemes for engineering and science students.</p>
+    </div>
+    <div class="cat-card">
+      <span class="cat-tag" style="background:var(--teal-bg); color:var(--teal);">State-specific</span>
+      <h3>Domicile-based</h3>
+      <p>Post-matric and welfare schemes restricted to your home state.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap" style="background:var(--card); border-radius:16px; border:1px solid var(--border);">
+  <div class="section-head" style="padding:0 12px;">
+    <p class="kicker">How it works</p>
+    <h2>Three steps to your matches</h2>
+  </div>
+  <div class="step-flow" style="padding:0 12px 8px;">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Tell us about you</h3>
+      <p>Course, year, marks, income, category, and state — takes about two minutes.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>We check the criteria</h3>
+      <p>Your answers are matched against real eligibility rules for every listed scholarship.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>See what you qualify for</h3>
+      <p>A ranked list of matches with deadlines, so you know exactly what to apply to first.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Ready to see what you qualify for?</h2>
+    <p>It takes two minutes and it's completely free.</p>
+    <a href="{{ url_for('eligibility') }}" class="btn btn-primary">Check your eligibility</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 ScholarFind</span>
+    <span>Built for students, by students</span>
+  </div>
+</footer>
+
+</body>
+</html>
