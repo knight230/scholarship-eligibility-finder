@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage students — ScholarFind</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="dash-shell">
+
+  <aside class="sidebar">
+    <a href="{{ url_for('home') }}" class="brand"><span class="brand-mark"></span>ScholarFind</a>
+
+    <p class="sidebar-section-label">Menu</p>
+    <ul class="sidebar-nav">
+      <li><a href="{{ url_for('admin_dashboard') }}">Overview</a></li>
+      <li><a href="#">Manage scholarships</a></li>
+      <li><a href="{{ url_for('admin_students') }}" class="active">Manage students</a></li>
+      <li><a href="#">Applications</a></li>
+      <li><a href="#">Verifications</a></li>
+      <li><a href="#">Reports</a></li>
+    </ul>
+
+    <p class="sidebar-section-label">Other</p>
+    <ul class="sidebar-nav">
+      <li><a href="#">Settings</a></li>
+    </ul>
+
+    <div class="sidebar-foot">
+      <a href="{{ url_for('login') }}">Sign out</a>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+
+    <div class="topbar">
+      <h1>Manage students</h1>
+      <div class="topbar-right">
+        <div class="bell" aria-label="Notifications">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6Z"/><path d="M9.5 20a2.5 2.5 0 0 0 5 0"/></svg>
+        </div>
+        <div class="avatar">AD</div>
+      </div>
+    </div>
+
+    <div class="dash-content">
+
+      <div class="stat-grid" style="grid-template-columns:1fr;">
+        <div class="stat-card">
+          <div class="label">Total registered students</div>
+          <div class="value">{{ student_count }}</div>
+        </div>
+      </div>
+
+      <div class="table-card">
+        <table class="data">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Course</th>
+              <th>Year</th>
+              <th>Category</th>
+              <th>State</th>
+              <th>Gender</th>
+              <th>Marks</th>
+              <th>Income (₹)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for s in students %}
+            <tr>
+              <td>{{ s.name or "—" }}</td>
+              <td>{{ s.email or "—" }}</td>
+              <td>{{ s.course or "—" }}</td>
+              <td>{{ s.year or "—" }}</td>
+              <td>{{ s.category or "—" }}</td>
+              <td>{{ s.state or "—" }}</td>
+              <td>{{ s.gender or "—" }}</td>
+              <td>{{ s.marks if s.marks else "—" }}</td>
+              <td>{{ "{:,.0f}".format(s.income) if s.income else "—" }}</td>
+            </tr>
+            {% else %}
+            <tr>
+              <td colspan="9" style="color:var(--text-muted);">No students have registered yet.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
+
+</body>
+</html>

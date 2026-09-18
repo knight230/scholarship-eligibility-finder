@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Check your eligibility — ScholarFind</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="{{ url_for('home') }}" class="brand"><span class="brand-mark"></span>ScholarFind</a>
+    <ul class="nav-links">
+      <li><a href="{{ url_for('home') }}">Home</a></li>
+      <li><a href="{{ url_for('eligibility') }}" class="active">Check eligibility</a></li>
+      <li><a href="{{ url_for('results') }}">Your matches</a></li>
+      <li><a href="{{ url_for('login') }}">Sign in</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap" style="max-width:560px; padding:64px 24px 100px;">
+  <h1 style="font-family:var(--font-display); font-size:32px; font-weight:600; color:var(--ink); margin:0 0 8px;">
+    Tell us about you
+  </h1>
+  <p style="color:var(--text-muted); font-size:15px; margin:0 0 36px;">
+    Nothing here is shared without your permission. It's only used to match you against eligibility criteria.
+  </p>
+
+  <form class="card" action="{{ url_for('eligibility') }}" method="post">
+    <div class="field">
+      <label for="marks">Last exam score</label>
+      <input type="number" id="marks" name="marks" step="0.1" min="0" max="100" placeholder="e.g. 82 (%) or 8.2 (CGPA x10)">
+      <p class="hint">Percentage or CGPA from your most recent semester or qualifying exam.</p>
+    </div>
+
+    <div class="field">
+      <label for="course">Course / field of study</label>
+      <select id="course" name="course">
+        <option value="">Select a course type</option>
+        <option value="engineering">Engineering / technical</option>
+        <option value="medical">Medical / health sciences</option>
+        <option value="science">Science</option>
+        <option value="commerce">Commerce / management</option>
+        <option value="arts">Arts / humanities</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="year">Year of study</label>
+      <select id="year" name="year">
+        <option value="">Select year</option>
+        <option value="1">1st year</option>
+        <option value="2">2nd year</option>
+        <option value="3">3rd year</option>
+        <option value="4">4th year</option>
+        <option value="pg">Postgraduate</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="income">Annual family income</label>
+      <select id="income" name="income">
+        <option value="">Select a range</option>
+        <option value="under-1l">Under ₹1,00,000</option>
+        <option value="1-2.5l">₹1,00,000 – ₹2,50,000</option>
+        <option value="2.5-6l">₹2,50,000 – ₹6,00,000</option>
+        <option value="6-8l">₹6,00,000 – ₹8,00,000</option>
+        <option value="over-8l">Over ₹8,00,000</option>
+      </select>
+      <p class="hint">Most government schemes use an income ceiling to decide eligibility.</p>
+    </div>
+
+    <div class="field">
+      <label for="category">Category</label>
+      <select id="category" name="category">
+        <option value="">Select category</option>
+        <option value="general">General</option>
+        <option value="obc">OBC</option>
+        <option value="sc">SC</option>
+        <option value="st">ST</option>
+        <option value="ews">EWS</option>
+        <option value="minority">Minority community</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="state">State / UT of domicile</label>
+      <input type="text" id="state" name="state" placeholder="e.g. Tamil Nadu">
+      <p class="hint">Many state scholarships are restricted to domicile students only.</p>
+    </div>
+
+    <div class="field">
+      <label for="gender">Gender</label>
+      <select id="gender" name="gender">
+        <option value="">Select gender</option>
+        <option value="female">Female</option>
+        <option value="male">Male</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="disability">Do you have a disability?</label>
+      <select id="disability" name="disability">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="first-gen">Are you the first in your family to attend college?</label>
+      <select id="first-gen" name="first-gen">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block">See your matches</button>
+  </form>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 ScholarFind</span>
+    <span>Built for students, by students</span>
+  </div>
+</footer>
+
+</body>
+</html>

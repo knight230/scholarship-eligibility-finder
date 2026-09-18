@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create your account — ScholarFind</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="{{ url_for('home') }}" class="brand"><span class="brand-mark"></span>ScholarFind</a>
+    <ul class="nav-links">
+      <li><a href="{{ url_for('home') }}">Home</a></li>
+      <li><a href="{{ url_for('eligibility') }}">Check eligibility</a></li>
+      <li><a href="{{ url_for('results') }}">Your matches</a></li>
+      <li><a href="{{ url_for('login') }}">Sign in</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap" style="max-width:420px; padding:70px 24px 100px;">
+  <h1 style="font-family:var(--font-display); font-size:28px; font-weight:600; color:var(--ink); margin:0 0 8px; text-align:center;">
+    Create your account
+  </h1>
+  <p style="color:var(--text-muted); font-size:14px; margin:0 0 32px; text-align:center;">
+    Save your matches, get deadline reminders, and track applications.
+  </p>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="card" style="border-color:var(--red); background:var(--red-bg); margin-bottom:16px; padding:14px 18px;">
+        {% for message in messages %}
+          <p style="margin:0; font-size:13px; color:var(--red);">{{ message }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <form class="card" action="{{ url_for('signup') }}" method="post">
+    <div class="field">
+      <label for="name">Full name</label>
+      <input type="text" id="name" name="name" placeholder="Priya Sundaram" required>
+    </div>
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="name@school.edu" required>
+    </div>
+    <div class="field">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="At least 6 characters" required minlength="6">
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Create account</button>
+    <p class="hint" style="text-align:center; margin-top:16px;">
+      Already have an account? <a href="{{ url_for('login') }}" style="color:var(--ink); font-weight:600; text-decoration:none;">Sign in</a>
+    </p>
+  </form>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 ScholarFind</span>
+    <span>Built for students, by students</span>
+  </div>
+</footer>
+
+</body>
+</html>
